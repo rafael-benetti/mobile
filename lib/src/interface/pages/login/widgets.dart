@@ -15,7 +15,7 @@ class Logo extends StatelessWidget {
       width: double.infinity,
       child: Image.asset(
         'assets/logo2.png',
-        height: screenHeight * 0.20,
+        height: screenHeight * 0.12,
         fit: BoxFit.fitHeight,
       ),
     );
