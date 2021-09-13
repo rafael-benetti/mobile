@@ -25,23 +25,23 @@ class NotificationsProvider extends ChangeNotifier {
   }
 
   Future<void> init() async {
-    // await Firebase.initializeApp();
-    // final messaging = FirebaseMessaging.instance;
-    // var settings = await messaging.requestPermission(
-    //   alert: true,
-    //   announcement: false,
-    //   badge: true,
-    //   carPlay: false,
-    //   criticalAlert: false,
-    //   provisional: false,
-    //   sound: true,
-    // );
-    // deviceToken = await messaging.getToken();
+    await Firebase.initializeApp();
+    final messaging = FirebaseMessaging.instance;
+    var settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+    deviceToken = await messaging.getToken();
 
-    // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    //   if (message.notification != null) {
-    //     HomePageModel().riseNotificationsPage();
-    //   }
-    // });
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      if (message.notification != null) {
+        HomePageModel().riseNotificationsPage();
+      }
+    });
   }
 }

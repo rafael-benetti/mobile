@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "415660434221",
+    "project_id": "black-telemetry",
+    "storage_bucket": "black-telemetry.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415660434221:android:962cfa29d8efa642e7a9a4",
+        "android_client_info": {
+          "package_name": "com.blacktelemetry.black_telemetry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415660434221-oc452jf6njovtoae3icbsbtggqfcr6jo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0v8T8E125BBVNHgCWSNZpaQPph8KVSx8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "415660434221-oc452jf6njovtoae3icbsbtggqfcr6jo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -17,7 +17,7 @@ class SplashPage extends StatelessWidget {
           backgroundColor: locator<AppColors>().backgroundColor,
           body: Center(
             child: Image.asset(
-              'assets/logo.png',
+              'assets/logo2.png',
               width: MediaQuery.of(context).size.width * 0.8,
               fit: BoxFit.fitWidth,
             ),

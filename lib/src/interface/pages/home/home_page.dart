@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
                           )
                         ],
                         title: Image.asset(
-                          'assets/logo.png',
+                          'assets/logo2.png',
                           width: 100,
                           fit: BoxFit.contain,
                         ),

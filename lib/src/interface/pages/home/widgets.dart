@@ -408,7 +408,7 @@ class _CabinetState extends State<Cabinet> with TickerProviderStateMixin {
                       end: Alignment.topRight,
                       colors: [
                         colors.primaryColor,
-                        Color(0xffa26cf8),
+                        Color(0xff0013ff),
                       ],
                     )
                   : null,

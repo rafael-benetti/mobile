@@ -205,29 +205,28 @@ class CollectionCard extends StatelessWidget {
               ),
               SizedBox(width: 5),
               Expanded(
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
                         collection.userName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      Row(
-                        children: [
-                          Text('Detalhes',
-                              style:
-                                  styles.regular(color: colors.primaryColor)),
-                          Icon(
-                            Icons.arrow_forward_ios_outlined,
-                            color: colors.primaryColor,
-                            size: 15,
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
+                    ),
+                    Row(
+                      children: [
+                        Text('Detalhes',
+                            style: styles.regular(color: colors.primaryColor)),
+                        Icon(
+                          Icons.arrow_forward_ios_outlined,
+                          color: colors.primaryColor,
+                          size: 15,
+                        )
+                      ],
+                    ),
+                  ],
                 ),
               )
             ],
