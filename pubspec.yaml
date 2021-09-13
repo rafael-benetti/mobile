@@ -1,0 +1,71 @@
+name: black_telemetry
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.0
+  stacked: ^1.7.7
+  get_it: ^5.0.6
+  hive: ^2.0.4
+  hive_flutter: ^1.0.0
+  permission_handler: ^8.1.2
+  path_provider: ^2.0.1
+  http: ^0.13.3
+  flutter_vector_icons: ^0.2.1
+  flutter_svg: 0.22.0
+  expandable: ^4.1.4
+  fl_chart: ^0.36.1
+  bot_toast: ^3.0.5
+  package_info: ^2.0.2
+  image_picker: ^0.7.5+2
+  intl: ^0.17.0
+  provider: ^4.3.3
+  kow_form: ^0.0.1+2
+  brasil_fields: ^1.1.1
+  hive_generator: ^1.1.0
+  build_runner: ^2.0.3
+  sliver_tools: ^0.2.1
+  firebase_messaging: ^10.0.0
+  pull_to_refresh: ^2.0.0
+  flutter_image_compress: ^1.0.0
+  camera:
+    git:
+      url: https://github.com/bottlepay/plugins.git
+      path: packages/camera/camera
+      ref: android-rework
+  location: 4.1.1
+  google_maps_flutter: ^2.0.5
+  syncfusion_flutter_datepicker: ^19.1.65-beta
+  dio: ^4.0.0
+  open_file: ^3.2.1
+  
+dev_dependencies:
+  pedantic:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+  fonts:
+    - family: Rubik
+      fonts:
+        - asset: fonts/Rubik-Regular.ttf
+        - asset: fonts/Rubik-Light.ttf
+          weight: 300
+        - asset: fonts/Rubik-Medium.ttf
+          weight: 500
+        - asset: fonts/Rubik-Bold.ttf
+          weight: 700
