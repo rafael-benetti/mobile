@@ -41,11 +41,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Sttigma necessita do acesso à sua câmera para editar a foto do seu perfil ou realizar coletas</string>
+	<string>Black necessita do acesso à sua câmera para editar a foto do seu perfil ou realizar coletas</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>NSLocationAlwaysUsageDescription</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Sttigma necessita do acesso à sua biblioteca de fotos para editar a foto do seu perfil ou realizar coletas</string>
+	<string>Black necessita do acesso à sua biblioteca de fotos para editar a foto do seu perfil ou realizar coletas</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
