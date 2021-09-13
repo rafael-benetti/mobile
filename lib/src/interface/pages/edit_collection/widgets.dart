@@ -24,6 +24,7 @@ class CollectionCamera extends StatelessWidget {
       children: [
         Container(
           height: MediaQuery.of(context).size.height * 0.85,
+          width: double.infinity,
           child: CameraPreview(cameraController),
         ),
         Scaffold(
@@ -42,7 +43,11 @@ class CollectionCamera extends StatelessWidget {
               color: Colors.black,
               height: MediaQuery.of(context).size.height * 0.15,
               child: GestureDetector(
-                onTap: onTap,
+                onTap: () async {
+                  await cameraController.setFocusMode(FocusMode.auto);
+                  onTap();
+                  print('setando pra auto');
+                },
                 child: Center(
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.08,

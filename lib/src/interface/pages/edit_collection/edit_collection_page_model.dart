@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:camera/camera.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -82,9 +83,14 @@ class EditCollectionPageModel extends BaseViewModel {
     await ph.Permission.manageExternalStorage.request();
     await ph.Permission.storage.request();
     cameras = await availableCameras();
-    cameraController = CameraController(cameras[0], ResolutionPreset.medium);
+    cameraController = CameraController(
+      cameras[0],
+      ResolutionPreset.max,
+    );
     await cameraController.initialize();
-    await cameraController.setFlashMode(FlashMode.off);
+    cameraController.setZoomLevel(0);
+    cameraController.setFocusPoint(Offset(100, 100));
+    cameraController.setFocusMode(FocusMode.auto);
     startLocation = await location.getLocation();
     await counterTypesProvider.getAllCounterTypes();
     collection.machineId = _machine.id;
@@ -99,8 +105,14 @@ class EditCollectionPageModel extends BaseViewModel {
     interfaceService.showLoader();
     await counterTypesProvider.getAllCounterTypes();
     cameras = await availableCameras();
-    cameraController = CameraController(cameras[0], ResolutionPreset.medium);
+    cameraController = CameraController(
+      cameras[0],
+      ResolutionPreset.max,
+    );
     await cameraController.initialize();
+    cameraController.setZoomLevel(0);
+    cameraController.setFocusPoint(Offset(100, 100));
+    cameraController.setFocusMode(FocusMode.auto);
     initializeListsOfCounters();
     interfaceService.closeLoader();
     setBusy(false);
@@ -201,7 +213,7 @@ class EditCollectionPageModel extends BaseViewModel {
           final outPath = '${splitted}_out${filePath.substring(lastIndex)}';
           var quality = 30;
           var result = File(file.path);
-          while (result.lengthSync() > 200000) {
+          while (result.lengthSync() > 800000) {
             result = await FlutterImageCompress.compressAndGetFile(
               file.absolute.path,
               outPath,
