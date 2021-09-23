@@ -1,3 +1,4 @@
+import 'package:black_telemetry/src/interface/pages/detailed_operator/detailed_operator_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -99,7 +100,7 @@ class OperatorsPage extends StatelessWidget {
                                                   .createOperators) {
                                                 locator<InterfaceService>()
                                                     .navigateTo(
-                                                  EditOperatorPage.route,
+                                                  DetailedOperatorPage.route,
                                                   arguments: _userProvider
                                                       .filteredOperators[index],
                                                 );

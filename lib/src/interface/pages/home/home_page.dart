@@ -157,25 +157,25 @@ class HomePage extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            if (model.user.role != Role.OPERATOR)
-                              SliverToBoxAdapter(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(height: 15),
-                                    Text(
-                                      'Tipos de pagamento',
-                                      style: styles.medium(fontSize: 14),
-                                    ),
-                                    SizedBox(height: 10),
-                                    DashboardPieChart(
-                                      incomeMethodDistributions:
-                                          dashboardProvider.dashboard
-                                              .incomeMethodDistributions,
-                                    ),
-                                  ],
-                                ),
-                              )
+                            // if (model.user.role != Role.OPERATOR)
+                            //   SliverToBoxAdapter(
+                            //     child: Column(
+                            //       crossAxisAlignment: CrossAxisAlignment.start,
+                            //       children: [
+                            //         SizedBox(height: 15),
+                            //         Text(
+                            //           'Tipos de pagamento',
+                            //           style: styles.medium(fontSize: 14),
+                            //         ),
+                            //         SizedBox(height: 10),
+                            //         DashboardPieChart(
+                            //           incomeMethodDistributions:
+                            //               dashboardProvider.dashboard
+                            //                   .incomeMethodDistributions,
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   )
                           ],
                         ),
                       ),

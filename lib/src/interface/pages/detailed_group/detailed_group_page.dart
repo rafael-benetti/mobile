@@ -158,14 +158,14 @@ class DetailedGroupPage extends StatelessWidget {
                                       .detailedGroup.pointsOfSaleSortedByIncome,
                                 ),
                                 SizedBox(height: 15),
-                                Text(
-                                  'Tipos de pagamento',
-                                  style: styles.medium(fontSize: 14),
-                                ),
-                                DetailedGroupPieChart(
-                                  incomeMethodDistributions: groupsProvider
-                                      .detailedGroup.incomeMethodDistributions,
-                                ),
+                                // Text(
+                                //   'Tipos de pagamento',
+                                //   style: styles.medium(fontSize: 14),
+                                // ),
+                                // DetailedGroupPieChart(
+                                //   incomeMethodDistributions: groupsProvider
+                                //       .detailedGroup.incomeMethodDistributions,
+                                // ),
                               ],
                             ),
                           )

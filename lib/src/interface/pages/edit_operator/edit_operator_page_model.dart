@@ -117,6 +117,7 @@ class EditOperatorPageModel extends BaseViewModel {
       interfaceService.closeLoader();
       if (response.status == Status.success) {
         interfaceService.goBack();
+        interfaceService.goBack();
         interfaceService.showSnackBar(
           message: 'Operador editado com sucesso.',
           backgroundColor: colors.lightGreen,

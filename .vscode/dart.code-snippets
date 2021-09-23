@@ -1,0 +1,46 @@
+{
+
+	"Initiate Interface Service": {
+		"prefix": "interface",
+		"scope": "dart",
+		"body": [
+			"final interface = locator<InterfaceService>();",
+		],
+		"description": "Instantiate interface service"
+	},
+
+	"Initiate Colors Service": {
+		"prefix": "colors.",
+		"scope": "dart",
+		"body": [
+			"final colors = locator<ColorsProvider>();",
+		],
+		"description": "Instantiate colors service"
+	},
+
+	"Create Reactive ViewModelBuilder Stateless Widget" : {
+		"prefix": "reactive.stateless",
+		"scope": "dart",
+		"body": [
+			"import 'package:flutter/material.dart';",
+			"import 'package:stacked/stacked.dart';",
+			
+			"class $1 extends StatelessWidget {",
+			"  static const route = '$2';",
+			"",
+			"  @override",
+			"  Widget build(BuildContext context) {",
+			"       return ViewModelBuilder<$1Model>.reactive(",
+			"       viewModelBuilder: () => $1Model(),",
+			"       builder: (context, model, child) => Scaffold(",
+			"           body: Container()",
+			"           ),",
+			"        );",
+			"     }",
+			"}",
+		]
+	}
+
+
+
+}

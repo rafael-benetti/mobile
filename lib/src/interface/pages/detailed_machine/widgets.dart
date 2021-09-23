@@ -659,24 +659,23 @@ class DataPerBox extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              if (role != Role.OPERATOR)
-                                Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text('Média: ', style: styles.medium()),
-                                        Text(
-                                          boxesInfo[index].givenPrizes != 0
-                                              ? 'R\$ ${(boxesInfo[index].currentMoney / boxesInfo[index].givenPrizes).toStringAsFixed(2).replaceAll('.', ',')}/prêmio'
-                                              : 'R\$ 0.00/prêmio',
-                                          style: styles.regular(
-                                            color: Colors.deepPurple,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text('Média: ', style: styles.medium()),
+                                      Text(
+                                        boxesInfo[index].givenPrizes != 0
+                                            ? 'R\$ ${(boxesInfo[index].currentMoney / boxesInfo[index].givenPrizes).toStringAsFixed(2).replaceAll('.', ',')}/prêmio'
+                                            : 'R\$ 0.00/prêmio',
+                                        style: styles.regular(
+                                          color: Colors.deepPurple,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
                               Row(
                                 children: [
                                   Text(

@@ -4,6 +4,7 @@ import 'interface/pages/collections/collections_page.dart';
 import 'interface/pages/detailed_collection/detailed_collection_page.dart';
 import 'interface/pages/detailed_group/detailed_group_page.dart';
 import 'interface/pages/detailed_machine/detailed_machine_page.dart';
+import 'interface/pages/detailed_operator/detailed_operator_page.dart';
 import 'interface/pages/detailed_route/detailed_route_page.dart';
 import 'interface/pages/edit_collection/edit_collection_page.dart';
 import 'interface/pages/machine_logs/machine_logs_page.dart';
@@ -71,6 +72,7 @@ class Router {
     ReportsPage.route: () => ReportsPage(),
     TelemetryLogsPage.route: () => TelemetryLogsPage(),
     MachineLogsPage.route: () => MachineLogsPage(),
+    DetailedOperatorPage.route: () => DetailedOperatorPage(),
   };
 
   static Route generateRoute(RouteSettings settings) {
