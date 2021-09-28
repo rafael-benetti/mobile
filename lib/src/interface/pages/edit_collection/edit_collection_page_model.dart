@@ -89,6 +89,7 @@ class EditCollectionPageModel extends BaseViewModel {
     );
     await cameraController.initialize();
     cameraController.setZoomLevel(0);
+
     cameraController.setFocusPoint(Offset(100, 100));
     cameraController.setFocusMode(FocusMode.auto);
     startLocation = await location.getLocation();
@@ -111,6 +112,7 @@ class EditCollectionPageModel extends BaseViewModel {
     );
     await cameraController.initialize();
     cameraController.setZoomLevel(0);
+
     cameraController.setFocusPoint(Offset(100, 100));
     cameraController.setFocusMode(FocusMode.auto);
     initializeListsOfCounters();

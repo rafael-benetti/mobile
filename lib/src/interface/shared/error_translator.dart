@@ -29,6 +29,8 @@ String translateError(response) {
       return 'Esta máquina está offline.';
     case 'MACHINE_CATEGORY_NOT_FOUND':
       return 'Esta máquina está offline.';
+    case 'USER_IS_INACTIVE':
+      return 'Este usuário está desativado.';
     default:
       return 'Algo deu errado. Tente novamente.';
   }

@@ -12,20 +12,36 @@ import '../../../locator.dart';
 final styles = locator<TextStyles>();
 final colors = locator<AppColors>();
 
-class CollectionCamera extends StatelessWidget {
+enum FlashState { OFF, ON, AUTO }
+
+class CollectionCamera extends StatefulWidget {
   final Function onTap;
   final CameraController cameraController;
 
   const CollectionCamera({Key key, this.onTap, this.cameraController})
       : super(key: key);
+
+  @override
+  State<CollectionCamera> createState() => _CollectionCameraState();
+}
+
+class _CollectionCameraState extends State<CollectionCamera> {
+  FlashState flash = FlashState.OFF;
   @override
   Widget build(BuildContext context) {
+    if (flash == FlashState.OFF) {
+      widget.cameraController.setFlashMode(FlashMode.off);
+    } else if (flash == FlashState.ON) {
+      widget.cameraController.setFlashMode(FlashMode.always);
+    } else if (flash == FlashState.AUTO) {
+      widget.cameraController.setFlashMode(FlashMode.auto);
+    }
     return Stack(
       children: [
         Container(
           height: MediaQuery.of(context).size.height * 0.85,
           width: double.infinity,
-          child: CameraPreview(cameraController),
+          child: CameraPreview(widget.cameraController),
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
@@ -42,35 +58,79 @@ class CollectionCamera extends StatelessWidget {
           child: Container(
               color: Colors.black,
               height: MediaQuery.of(context).size.height * 0.15,
-              child: GestureDetector(
-                onTap: () async {
-                  await cameraController.setFocusMode(FocusMode.auto);
-                  onTap();
-                  print('setando pra auto');
-                },
-                child: Center(
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.08,
-                    width: MediaQuery.of(context).size.height * 0.08,
-                    padding: EdgeInsets.all(
-                      MediaQuery.of(context).size.height * 0.003,
-                    ),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.black,
-                          width: MediaQuery.of(context).size.height * 0.003,
+              child: Row(
+                children: [
+                  Expanded(
+                      child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      setState(() {
+                        if (flash == FlashState.OFF) {
+                          flash = FlashState.ON;
+                          widget.cameraController
+                              .setFlashMode(FlashMode.always);
+                        } else if (flash == FlashState.ON) {
+                          flash = FlashState.AUTO;
+                          widget.cameraController.setFlashMode(FlashMode.auto);
+                        } else if (flash == FlashState.AUTO) {
+                          flash = FlashState.OFF;
+                          widget.cameraController.setFlashMode(FlashMode.off);
+                        }
+                      });
+                    },
+                    child: Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          border: Border.all(color: Colors.white, width: 1),
                         ),
-                        shape: BoxShape.circle,
-                        color: Colors.white,
+                        padding: EdgeInsets.all(10),
+                        child: Icon(
+                          flash == FlashState.OFF
+                              ? Icons.flash_off_rounded
+                              : flash == FlashState.ON
+                                  ? Icons.flash_on_rounded
+                                  : Icons.flash_auto_rounded,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  )),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () async {
+                        await widget.cameraController
+                            .setFocusMode(FocusMode.auto);
+                        widget.onTap();
+                      },
+                      child: Center(
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.08,
+                          width: MediaQuery.of(context).size.height * 0.08,
+                          padding: EdgeInsets.all(
+                            MediaQuery.of(context).size.height * 0.003,
+                          ),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.black,
+                                width:
+                                    MediaQuery.of(context).size.height * 0.003,
+                              ),
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                  Expanded(child: Container())
+                ],
               )),
         )
       ],

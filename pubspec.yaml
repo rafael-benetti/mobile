@@ -24,7 +24,7 @@ dependencies:
   flutter_svg: 0.22.0
   expandable: ^4.1.4
   fl_chart: ^0.36.1
-  bot_toast: ^3.0.5
+  bot_toast: 4.0.0
   package_info: ^2.0.2
   image_picker: ^0.7.5+2
   intl: ^0.17.0

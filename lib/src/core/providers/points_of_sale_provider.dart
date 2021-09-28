@@ -122,9 +122,6 @@ class PointsOfSaleProvider extends ChangeNotifier {
       String routeId,
       String operatorId,
       bool limitless}) async {
-    print(
-      _generateParams(label, groupId, offset, routeId, operatorId, limitless),
-    );
     return await _apiService
         .apiGet(
       route: ApiRoutes().pointsOfSale,
