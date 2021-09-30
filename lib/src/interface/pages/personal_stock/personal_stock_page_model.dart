@@ -239,7 +239,7 @@ class PersonalStockPageModel extends BaseViewModel {
         DialogAction(
           title: 'Transferir',
           onPressed: () async {
-            if (amountToBeTransfered > item.available) {
+            if (amountToBeTransfered > item.quantity) {
               interfaceService.showSnackBar(
                   message: 'Quantidade maior que total disponível',
                   backgroundColor: colors.red);
@@ -265,7 +265,7 @@ class PersonalStockPageModel extends BaseViewModel {
       widget: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Disponível: ${item.available}'),
+          Text('Disponível: ${item.quantity}'),
           SizedBox(height: 25),
           Text('Quantidade'),
           SizedBox(height: 5),
@@ -345,6 +345,7 @@ class PersonalStockPageModel extends BaseViewModel {
       int amountToBeTransfered,
       {Group group, User user}) async {
     interfaceService.showLoader();
+    print(data);
     var response = await userProvider.transferFromUserStock(data, id);
     interfaceService.closeLoader();
     if (response.status == Status.success) {

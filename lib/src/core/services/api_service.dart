@@ -44,7 +44,8 @@ class ApiRoutes {
 }
 
 class ApiService {
-  static const String baseUrl = 'https://api.blacktelemetry.com';
+  // static const String baseUrl = 'https://api.blacktelemetry.com';
+  static const String baseUrl = 'http://192.168.0.100:3333';
   static Map<String, String> baseHeaders = {
     'content-type': 'application/json',
   };
