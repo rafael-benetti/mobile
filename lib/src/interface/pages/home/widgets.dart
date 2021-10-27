@@ -1,3 +1,7 @@
+import 'package:black_telemetry/src/core/models/group.dart';
+import 'package:black_telemetry/src/core/models/point_of_sale.dart';
+import 'package:black_telemetry/src/core/models/route.dart';
+import 'package:black_telemetry/src/interface/widgets/custom_dropdown.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -615,6 +619,189 @@ class _CabinetState extends State<Cabinet> with TickerProviderStateMixin {
                         ),
                       ),
           )
+        ],
+      ),
+    );
+  }
+}
+
+class FiltersDialog extends StatefulWidget {
+  final List<Group> groups;
+  final List<PointOfSale> pointsOfSale;
+  final List<OperatorRoute> routes;
+  final Function(String, String, String) applyFilters;
+  final String currentGroupId;
+  final String currentPointOfSaleId;
+  final String currentRouteId;
+
+  const FiltersDialog({
+    Key key,
+    this.groups,
+    this.pointsOfSale,
+    this.applyFilters,
+    this.routes,
+    this.currentGroupId,
+    this.currentPointOfSaleId,
+    this.currentRouteId,
+  }) : super(key: key);
+
+  @override
+  State<FiltersDialog> createState() => _FiltersDialogState();
+}
+
+class _FiltersDialogState extends State<FiltersDialog> {
+  String groupId;
+  String pointOfSaleId;
+  String routeId;
+  List<Group> groups;
+  List<PointOfSale> pointsOfSale;
+  List<OperatorRoute> routes;
+
+  @override
+  void initState() {
+    groups = widget.groups;
+    pointsOfSale = widget.pointsOfSale;
+    routes = widget.routes;
+    groupId = widget.currentGroupId;
+    pointOfSaleId = widget.currentPointOfSaleId;
+    routeId = widget.currentRouteId;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 500,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Parceria',
+            style: styles.regular(fontSize: 16),
+          ),
+          SizedBox(height: 7.5),
+          CustomKrowchDropdownButton(
+            maxHeight: 157.5,
+            onSelect: (value) {
+              setState(() {
+                routeId = null;
+                pointOfSaleId = null;
+                widget.applyFilters(groupId, pointOfSaleId, routeId);
+                if (value.title.toLowerCase() == 'todas') {
+                  groupId = null;
+                } else {
+                  groupId = groups
+                      .firstWhere((element) => element.label == value.title)
+                      .id;
+                }
+              });
+            },
+            currentValue: DropdownInputOption(
+                title: groupId == null
+                    ? 'Todas'
+                    : groups
+                        .firstWhere((element) => element.id == groupId)
+                        .label),
+            values: [DropdownInputOption(title: 'Todas')] +
+                List.generate(
+                  groups.length,
+                  (index) => DropdownInputOption(
+                    title: groups[index].label,
+                  ),
+                ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            'Rota',
+            style: styles.regular(fontSize: 16),
+          ),
+          SizedBox(height: 7.5),
+          CustomKrowchDropdownButton(
+            maxHeight: 157.5,
+            onSelect: (value) {
+              setState(() {
+                if (value.title.toLowerCase() == 'todas') {
+                  routeId = null;
+                } else {
+                  routeId = routes
+                      .firstWhere((element) => element.label == value.title)
+                      .id;
+                }
+                widget.applyFilters(groupId, pointOfSaleId, routeId);
+              });
+            },
+            currentValue: DropdownInputOption(title: 'Todas'),
+            values: [
+                  DropdownInputOption(
+                    title: routeId == null
+                        ? 'Todas'
+                        : routes
+                            .firstWhere((element) => element.id == routeId)
+                            .label,
+                  ),
+                ] +
+                List.generate(
+                  groupId != null
+                      ? routes
+                          .where((route) => route.groupIds.contains(groupId))
+                          .length
+                      : routes.length,
+                  (index) => DropdownInputOption(
+                    title: groupId != null
+                        ? routes
+                            .where((route) => route.groupIds.contains(groupId))
+                            .toList()[index]
+                            .label
+                        : routes[index].label,
+                  ),
+                ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            'Ponto de venda',
+            style: styles.regular(fontSize: 16),
+          ),
+          SizedBox(height: 7.5),
+          CustomKrowchDropdownButton(
+            maxHeight: 157.5,
+            onSelect: (value) {
+              setState(() {
+                if (value.title.toLowerCase() == 'todos') {
+                  pointOfSaleId = null;
+                } else {
+                  pointOfSaleId = pointsOfSale
+                      .firstWhere((element) => element.label == value.title)
+                      .id;
+                }
+                widget.applyFilters(groupId, pointOfSaleId, routeId);
+              });
+            },
+            currentValue: DropdownInputOption(
+              title: pointOfSaleId == null
+                  ? 'Todos'
+                  : pointsOfSale
+                      .firstWhere((element) => element.id == pointOfSaleId)
+                      .label,
+            ),
+            values: [DropdownInputOption(title: 'Todos')] +
+                List.generate(
+                  groupId != null
+                      ? pointsOfSale
+                          .where(
+                              (pointOfSale) => pointOfSale.groupId == groupId)
+                          .length
+                      : pointsOfSale.length,
+                  (index) => DropdownInputOption(
+                    title: groupId != null
+                        ? pointsOfSale
+                            .where(
+                                (pointOfSale) => pointOfSale.groupId == groupId)
+                            .toList()[index]
+                            .label
+                        : pointsOfSale[index].label,
+                  ),
+                ),
+          ),
         ],
       ),
     );

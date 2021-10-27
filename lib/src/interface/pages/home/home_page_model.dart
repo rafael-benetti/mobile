@@ -77,109 +77,18 @@ class HomePageModel extends BaseViewModel {
     interfaceService.showDialogWithWidgets(
         title: 'Filtros',
         color: colors.primaryColor,
-        widget: Container(
-          width: 500,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Parceria',
-                style: styles.regular(fontSize: 16),
-              ),
-              SizedBox(height: 7.5),
-              CustomDropdownButton(
-                maxHeight: 157.5,
-                onSelect: (value) {
-                  if (value.title.toLowerCase() == 'todas') {
-                    groupId = null;
-                  } else {
-                    groupId = groupsProvider.groups
-                        .firstWhere((element) => element.label == value.title)
-                        .id;
-                  }
-                },
-                initialValue: DropdownInputOption(
-                    title: groupId == null
-                        ? 'Todas'
-                        : groupsProvider.groups
-                            .firstWhere((element) => element.id == groupId)
-                            .label),
-                values: [DropdownInputOption(title: 'Todas')] +
-                    List.generate(
-                      groupsProvider.groups.length,
-                      (index) => DropdownInputOption(
-                        title: groupsProvider.groups[index].label,
-                      ),
-                    ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Rota',
-                style: styles.regular(fontSize: 16),
-              ),
-              SizedBox(height: 7.5),
-              CustomDropdownButton(
-                maxHeight: 157.5,
-                onSelect: (value) {
-                  if (value.title.toLowerCase() == 'todas') {
-                    routeId = null;
-                  } else {
-                    routeId = routesProvider.routes
-                        .firstWhere((element) => element.label == value.title)
-                        .id;
-                  }
-                },
-                initialValue: DropdownInputOption(title: 'Todas'),
-                values: [
-                      DropdownInputOption(
-                        title: routeId == null
-                            ? 'Todas'
-                            : routesProvider.routes
-                                .firstWhere((element) => element.id == routeId)
-                                .label,
-                      ),
-                    ] +
-                    List.generate(
-                      routesProvider.routes.length,
-                      (index) => DropdownInputOption(
-                        title: routesProvider.routes[index].label,
-                      ),
-                    ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Ponto de venda',
-                style: styles.regular(fontSize: 16),
-              ),
-              SizedBox(height: 7.5),
-              CustomDropdownButton(
-                maxHeight: 157.5,
-                onSelect: (value) {
-                  if (value.title.toLowerCase() == 'todos') {
-                    pointOfSaleId = null;
-                  } else {
-                    pointOfSaleId = pointsOfSaleProvider.pointsOfSale
-                        .firstWhere((element) => element.label == value.title)
-                        .id;
-                  }
-                },
-                initialValue: DropdownInputOption(
-                  title: pointOfSaleId == null
-                      ? 'Todos'
-                      : pointsOfSaleProvider.pointsOfSale
-                          .firstWhere((element) => element.id == pointOfSaleId)
-                          .label,
-                ),
-                values: [DropdownInputOption(title: 'Todos')] +
-                    List.generate(
-                      pointsOfSaleProvider.pointsOfSale.length,
-                      (index) => DropdownInputOption(
-                        title: pointsOfSaleProvider.pointsOfSale[index].label,
-                      ),
-                    ),
-              ),
-            ],
-          ),
+        widget: FiltersDialog(
+          groups: groupsProvider.groups,
+          pointsOfSale: pointsOfSaleProvider.pointsOfSale,
+          routes: routesProvider.routes,
+          applyFilters: (gId, posId, rId) {
+            groupId = gId;
+            pointOfSaleId = posId;
+            routeId = rId;
+          },
+          currentGroupId: groupId,
+          currentPointOfSaleId: pointOfSaleId,
+          currentRouteId: routeId,
         ),
         actions: [
           DialogAction(
