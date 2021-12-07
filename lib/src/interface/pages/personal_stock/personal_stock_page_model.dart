@@ -345,7 +345,6 @@ class PersonalStockPageModel extends BaseViewModel {
       int amountToBeTransfered,
       {Group group, User user}) async {
     interfaceService.showLoader();
-    print(data);
     var response = await userProvider.transferFromUserStock(data, id);
     interfaceService.closeLoader();
     if (response.status == Status.success) {

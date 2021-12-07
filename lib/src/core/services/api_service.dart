@@ -50,7 +50,7 @@ class ApiService {
   };
 
   final _client = Client();
-  final timeout = Duration(seconds: 10);
+  final timeout = Duration(seconds: 80);
 
   Future<ApiResponse> apiGet({String route, String queryParams = ''}) async {
     try {
